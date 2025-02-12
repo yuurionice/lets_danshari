@@ -4,9 +4,13 @@
       Let's danshari
     <% end %>
     <nav class="space-x-4">
-      <%= link_to '新規登録', '', class: 'hover:underline text-gray-700' %>
-      <%= link_to 'ログイン', '', class: 'hover:underline text-gray-700' %>
-    </nav>
+  <% if user_signed_in? %>
+    <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %>
+  <% else %>
+    <%= link_to '新規登録', new_user_registration_path, class: 'hover:underline text-gray-700' %>
+    <%= link_to 'ログイン', new_user_session_path, class: 'hover:underline text-gray-700' %>
+  <% end %>
+</nav>
   </header>
 
   <main class="flex-grow flex flex-col items-center justify-center py-10 px-4">
