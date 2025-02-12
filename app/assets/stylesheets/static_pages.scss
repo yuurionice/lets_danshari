@@ -1,0 +1,83 @@
+.top-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 40px;
+    background-color: #f0f0f0;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-style: italic;
+  }
+  
+  .auth-links {
+    a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #333;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  .main-content {
+    text-align: center;
+    padding: 40px 0;
+  }
+  
+  .main-description {
+    font-size: 24px;
+    margin-bottom: 40px;
+  }
+  
+  .action-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .card {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  .footer {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    text-align: center;
+    
+    .footer-links {
+      a {
+        margin: 0 15px;
+        text-decoration: none;
+        color: #666;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }

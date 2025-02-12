@@ -1,0 +1,37 @@
+<div class="min-h-screen w-full flex flex-col">
+  <header class="w-full flex justify-between items-center py-5 px-8 bg-gray-100">
+    <%= link_to root_path, class: "text-2xl italic text-gray-700 hover:text-gray-900 transition-colors duration-200" do %>
+      Let's danshari
+    <% end %>
+    <nav class="space-x-4">
+      <%= link_to '新規登録', '', class: 'hover:underline text-gray-700' %>
+      <%= link_to 'ログイン', '', class: 'hover:underline text-gray-700' %>
+    </nav>
+  </header>
+
+  <main class="flex-grow flex flex-col items-center justify-center py-10 px-4">
+    <h1 class="text-2xl mb-10"></h1>
+
+    <div class="w-full max-w-2xl flex flex-col gap-5 px-4">
+      <a href="#" class="bg-gray-100 p-5 rounded-lg text-gray-700 hover:-translate-y-0.5 transition-transform duration-200 hover:shadow-md text-center">
+        <div>断捨離とは？</div>
+      </a>
+
+      <a href="#" class="bg-gray-100 p-5 rounded-lg text-gray-700 hover:-translate-y-0.5 transition-transform duration-200 hover:shadow-md text-center">
+        <div>断捨離リスト</div>
+      </a>
+
+      <a href="#" class="bg-gray-100 p-5 rounded-lg text-gray-700 hover:-translate-y-0.5 transition-transform duration-200 hover:shadow-md text-center">
+        <div>みんなの断捨離を見に行く</div>
+      </a>
+    </div>
+  </main>
+
+  <footer class="w-full py-5 px-8 bg-gray-100">
+    <nav class="flex justify-center space-x-6">
+      <a href="#" class="text-gray-500 hover:underline">お問い合わせページ</a>
+      <a href="#" class="text-gray-500 hover:underline">プライバシーポリシー</a>
+      <a href="#" class="text-gray-500 hover:underline">利用規約</a>
+    </nav>
+  </footer>
+</div>
