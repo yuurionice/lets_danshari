@@ -1,0 +1,53 @@
+<div class="container mx-auto px-4">
+  <header class="flex justify-between items-center py-4">
+    <h1 class="text-2xl">Let's danshari</h1>
+    <div>
+      <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: 'text-gray-600' %>
+      <%= link_to 'マイページ', '#', class: 'ml-4 text-gray-600' %>
+      <%= link_to '一覧ページ', '#', class: 'ml-4 text-gray-600' %>
+    </div>
+  </header>
+
+  <div class="max-w-2xl mx-auto mt-8">
+    <h2 class="text-xl mb-6">ToDo</h2>
+
+    <%= form_with(model: @item, local: true, class: 'mb-4') do |f| %>
+      <div class="flex items-center space-x-4 mb-4">
+        <%= f.text_field :name, placeholder: '断捨離するものを入力', class: 'flex-grow p-2 border rounded' %>
+        <%= f.date_field :danshari_at, class: 'p-2 border rounded' %>
+        <%= f.submit '追加', class: 'px-4 py-2 bg-blue-500 text-white rounded' %>
+      </div>
+    <% end %>
+
+    <div class="space-y-4">
+      <% @items.each do |item| %>
+        <div class="flex items-center border-b pb-4">
+          <%= check_box_tag "item_#{item.id}", item.id, false, 
+              class: 'mr-4 h-5 w-5' %>
+          <div class="flex-grow">
+            <%= item.name %>
+          </div>
+          <div class="mx-4 text-gray-600">
+            <%= item.danshari_at.strftime('%Y-%m-%d') %>
+          </div>
+          <%= button_to item_path(item), 
+              method: :delete,
+              class: 'text-gray-500',
+              form: { data: { turbo_confirm: '本当に削除しますか？' } } do %>
+            <i class="fas fa-trash"></i>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <footer class="fixed bottom-0 left-0 right-0 bg-white">
+    <div class="container mx-auto py-3 text-center border-t">
+      <div class="space-x-4">
+        <%= link_to 'お問い合わせページ', '#', class: 'text-blue-500' %>
+        <%= link_to 'プライバシーポリシー', '#', class: 'text-blue-500' %>
+        <%= link_to '利用規約', '#', class: 'text-blue-500' %>
+      </div>
+    </div>
+  </footer>
+</div>
