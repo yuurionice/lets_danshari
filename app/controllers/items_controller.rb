@@ -3,7 +3,8 @@ class ItemsController < ApplicationController
     before_action :set_item, only: [:destroy]
 
     def index
-      @items = Item.all
+        @items = current_user.items.all
+        @item = current_user.items.build  # 新規作成フォーム用
     end
 
     def new
