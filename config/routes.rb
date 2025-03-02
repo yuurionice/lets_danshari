@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
   root "static_pages#top"
-  resources :items
+  resources :items do
+    resources :posts, only: [:new, :create]
+    collection do
+      get :completed  # 完了一覧表示用
+    end
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
