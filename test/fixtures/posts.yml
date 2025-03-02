@@ -2,6 +2,16 @@
 
 one:
   title: MyString
+  user_name: MyString
+  image: MyString
+  amount: 1
+  comment: MyText
+  item: one
 
 two:
   title: MyString
+  user_name: MyString
+  image: MyString
+  amount: 1
+  comment: MyText
+  item: two
