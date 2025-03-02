@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_item, only: [:destroy]
+    before_action :set_item, only: [:edit, :update, :destroy, :new_post]
 
     def index
         @items = current_user.items.all
@@ -31,6 +31,20 @@ class ItemsController < ApplicationController
     def destroy
         @item.destroy
         redirect_to items_path, notice: 'アイテムを削除しました'
+      end
+
+      def new_post
+
+        if @item.nil?
+          @item = current_user.items.find(params[:id])
+        end
+
+        @post = Post.new(
+          item: @item,
+          title: "#{@item.name}を断捨離しました",
+          user_name: current_user.name  # ユーザー名を自動設定
+        )
+        render 'posts/new'
       end
 
     private

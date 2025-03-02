@@ -38,7 +38,7 @@
             <div class="mx-4 text-gray-600">
               <%= item.danshari_at.strftime('%Y/%m/%d') %>
             </div>
-            <%= button_to '#', class: "mr-2 px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-sm" do %>断捨離した<% end %>
+            <%= link_to new_post_item_path(item), class: "mr-2 px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-sm" do %>断捨離した<% end %>
             <%= link_to edit_item_path(item), class: "text-gray-400 hover:text-gray-600 mr-2" do %>
               <i class="fas fa-edit"></i>
             <% end %>

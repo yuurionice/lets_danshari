@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
   devise_for :users
   root "static_pages#top"
+
   resources :items do
-    resources :posts, only: [:new, :create]
+    member do
+      get :new_post # 断捨離ボタンを押した時の遷移先
+    end
     collection do
-      get :completed  # 完了一覧表示用
+      get :completed # 完了一覧表示用
     end
   end
+
+  resources :posts, only: [:create, :show, :index]
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -21,3 +27,4 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 end
+
