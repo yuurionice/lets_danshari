@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_item, only: [:destroy]
+    before_action :set_item, only: [:edit, :update, gi:destroy]
 
     def index
         @items = current_user.items.all
@@ -28,10 +28,15 @@ class ItemsController < ApplicationController
       end
     end
 
+    def edit
+      @item = current_user.items.find(params[:id])
+    end
+
     def destroy
-        @item.destroy
-        redirect_to items_path, notice: 'アイテムを削除しました'
-      end
+      @item = current_user.items.find(params[:id])
+      @item.update(completed: true)
+      redirect_to new_item_post_path(@item), notice: '断捨離が完了しました。思い出の写真を投稿しましょう！'
+    end
 
     private
 

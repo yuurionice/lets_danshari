@@ -1,0 +1,17 @@
+<div class="max-w-3xl mx-auto">
+  <h2 class="text-2xl mb-6">アイテムの編集</h2>
+  <%= form_with(model: @item, local: true, class: "mb-8") do |f| %>
+    <div class="flex items-center gap-4">
+      <div class="flex-grow">
+        <%= f.text_field :name, class: "w-full p-2 border rounded", placeholder: "断捨離するものを入力" %>
+      </div>
+      <div>
+        <%= f.date_field :danshari_at, class: "p-2 border rounded" %>
+      </div>
+      <%= f.submit '更新', class: "px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" %>
+    </div>
+  <% end %>
+  <div class="mt-4">
+    <%= link_to '一覧に戻る', items_path, class: "text-blue-500 hover:underline" %>
+  </div>
+</div>
