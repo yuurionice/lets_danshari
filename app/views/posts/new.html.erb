@@ -2,7 +2,7 @@
 <div class="max-w-3xl mx-auto mt-8 p-6 bg-white rounded-lg shadow">
   <h2 class="text-2xl mb-6">断捨離の記録を投稿する</h2>
 
-  <%= form_with(model: @post, local: true) do |f| %>
+  <%= form_with(model: @post, url: posts_path, method: :post, local: true) do |f| %>
     <%= f.hidden_field :item_id %>
 
     <div class="mb-4">
