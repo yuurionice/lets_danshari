@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
     before_action :set_item, only: [:edit, :update, :destroy, :new_post]
 
     def index
-        @items = current_user.items.all
+        @items = current_user.items.where(completed: false)
         @item = current_user.items.build  # 新規作成フォーム用
     end
 
@@ -44,8 +44,12 @@ class ItemsController < ApplicationController
           title: "#{@item.name}を断捨離しました",
           user_name: current_user.name  # ユーザー名を自動設定
         )
-        render 'posts/new'
-      end
+
+          # アイテムを「完了」状態に更新
+          @item.update(completed: true)
+
+          render 'posts/new'
+          end
 
     private
 
