@@ -1,5 +1,6 @@
 class CreatePosts < ActiveRecord::Migration[7.2]
   def change
+    return if table_exists?(:posts)
     create_table :posts do |t|
       t.string :title
       t.string :user_name
