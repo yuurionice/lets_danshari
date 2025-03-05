@@ -50,6 +50,11 @@
           </div>
         <% end %>
       </div>
+
+      <!-- ページネーションをグリッドの外に移動 -->
+      <div class="mt-8 flex justify-center">
+        <%= paginate @posts, class: "pagination" %>
+      </div>
     </div>
   </main>
 
@@ -61,4 +66,3 @@
     </nav>
   </footer>
 </div>
-
