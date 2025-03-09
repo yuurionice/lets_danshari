@@ -34,22 +34,21 @@ class ItemsController < ApplicationController
       end
 
       def new_post
-
         if @item.nil?
           @item = current_user.items.find(params[:id])
         end
 
         @post = Post.new(
-          item: @item,
+          item_id: @item.id,
           title: "#{@item.name}を断捨離しました",
-          user_name: current_user.name  # ユーザー名を自動設定
+          user_name: current_user.name,  # ユーザー名を自動設定
+          user_id: current_user.id       # ここを追加: ユーザーIDを設定
         )
 
-          # アイテムを「完了」状態に更新
-          @item.update(completed: true)
-
-          render 'posts/new'
-          end
+        # アイテムを「完了」状態に更新
+        @item.update(completed: true)
+        render 'posts/new'
+      end
 
     private
 
