@@ -11,7 +11,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :posts, only: [:create, :show, :index]
+  resources :posts, only: [:create, :show, :index, :edit, :update, :destroy]
+  get 'my_posts', to: 'posts#my_posts' # 自分の投稿一覧表示用
+
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
