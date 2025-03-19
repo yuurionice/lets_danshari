@@ -1,45 +1,72 @@
 <div class="min-h-screen w-full flex flex-col">
-  <header class="w-full flex justify-between items-center py-5 px-8 bg-gray-100">
-    <%= link_to root_path, class: "text-2xl italic text-gray-700 hover:text-gray-900 transition-colors duration-200" do %>
+  <header class="w-full flex justify-between items-center py-6 px-10 bg-gray-100">
+    <%= link_to root_path, class: "text-3xl italic text-gray-700 hover:text-gray-900 transition-colors duration-200 font-bold" do %>
       Let's danshari
     <% end %>
-    <nav class="space-x-4">
-  <% if user_signed_in? %>
-    <nav class="space-x-4">
-      <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %>
-      <%= link_to 'マイページ', '#', class: 'hover:underline text-gray-700' %>
-      <%= link_to '一覧ページ', posts_path, class: 'hover:underline text-gray-700' %>
+    <nav class="space-x-6">
+      <% if user_signed_in? %>
+        <nav class="space-x-6 text-lg">
+          <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: 'hover:underline text-gray-700' %>
+          <%= link_to 'マイページ', '#', class: 'hover:underline text-gray-700' %>
+          <%= link_to '一覧ページ', posts_path, class: 'hover:underline text-gray-700' %>
+        </nav>
+      <% else %>
+        <%= link_to '新規登録', new_user_registration_path, class: 'hover:underline text-gray-700 text-lg' %>
+        <%= link_to 'ログイン', new_user_session_path, class: 'hover:underline text-gray-700 text-lg' %>
+      <% end %>
     </nav>
-  <% else %>
-    <%= link_to '新規登録', new_user_registration_path, class: 'hover:underline text-gray-700' %>
-    <%= link_to 'ログイン', new_user_session_path, class: 'hover:underline text-gray-700' %>
-  <% end %>
-</nav>
   </header>
 
-  <main class="flex-grow flex flex-col items-center justify-center py-10 px-4">
-    <h1 class="text-2xl mb-10"></h1>
+  <main class="flex-grow flex flex-col items-center justify-center py-12 px-6">
+    <h1 class="text-3xl mb-12"></h1>
 
-    <div class="w-full max-w-2xl flex flex-col gap-5 px-4">
-      <a href="#" class="bg-gray-100 p-5 rounded-lg text-gray-700 hover:-translate-y-0.5 transition-transform duration-200 hover:shadow-md text-center">
-        <div>断捨離とは？</div>
-      </a>
+    <div class="w-full max-w-3xl flex flex-col gap-8 px-4">
+      <div class="bg-gray-100 p-8 rounded-lg text-gray-700 shadow-md">
+        <h2 class="font-bold text-2xl mb-6 text-center">断捨離することで期待されること</h2>
 
-      <%= link_to items_path, class: "bg-gray-100 p-5 rounded-lg text-gray-700 hover:-translate-y-0.5 transition-transform duration-200 hover:shadow-md text-center" do %>
-        <div>断捨離リスト</div>
+        <ul class="space-y-4 text-left text-lg">
+          <li class="flex items-start">
+            <span class="mr-2 font-bold"></span>
+            <span><span class="font-semibold">心の安定やストレスの軽減</span>・・・不要なものに囲まれていると無意識にストレスを感じてしまうため</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-2 font-bold"></span>
+            <span><span class="font-semibold">集中力アップ</span>・・・不要な物を減らすことで視覚的な刺激が少なくなり集中力アップに繋がる</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-2 font-bold"></span>
+            <span><span class="font-semibold">無駄遣いが減り節約できる</span>・・・必要なものだけ購入するようになる</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-2 font-bold"></span>
+            <span><span class="font-semibold">掃除や片付けが楽になる</span>・・・不要な物を少なくすることで掃除や片付けが楽になる</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-2 font-bold"></span>
+            <span><span class="font-semibold">運気上昇</span>・・・スピリチュアル的に物が多い部屋は気が溜まり、運気を下げてしまうことにつながるため</span>
+          </li>
+        </ul>
+
+        <p class="mt-6 text-base">※効果や実感度は個人差があり、必ず期待されるとは限りません。</p>
+        <p class="mt-6 italic text-xl text-center font-medium">自宅で数年使用していないものはありませんか？</p>
+        <p class="mt-6 italic text-xl text-center font-medium">家に残さない、思い出に残してスッキリしましょう</p>
+      </div>
+
+      <%= link_to items_path, class: "bg-gray-100 p-6 rounded-lg text-gray-700 hover:-translate-y-1 transition-transform duration-200 hover:shadow-lg text-center shadow-md" do %>
+        <div class="text-xl font-medium">断捨離リスト</div>
       <% end %>
 
-      <%= link_to posts_path, class: "bg-gray-100 p-5 rounded-lg text-gray-700 hover:-translate-y-0.5 transition-transform duration-200 hover:shadow-md text-center" do %>
-        <div>みんなの断捨離を見に行く</div>
+      <%= link_to posts_path, class: "bg-gray-100 p-6 rounded-lg text-gray-700 hover:-translate-y-1 transition-transform duration-200 hover:shadow-lg text-center shadow-md" do %>
+        <div class="text-xl font-medium">みんなの断捨離を見に行く</div>
       <% end %>
     </div>
   </main>
 
-  <footer class="w-full py-5 px-8 bg-gray-100">
-    <nav class="flex justify-center space-x-6">
-      <a href="#" class="text-gray-500 hover:underline">お問い合わせページ</a>
-      <a href="#" class="text-gray-500 hover:underline">プライバシーポリシー</a>
-      <a href="#" class="text-gray-500 hover:underline">利用規約</a>
+  <footer class="w-full py-6 px-10 bg-gray-100">
+    <nav class="flex justify-center space-x-8">
+      <a href="#" class="text-gray-500 hover:underline text-lg">お問い合わせページ</a>
+      <a href="#" class="text-gray-500 hover:underline text-lg">プライバシーポリシー</a>
+      <a href="#" class="text-gray-500 hover:underline text-lg">利用規約</a>
     </nav>
   </footer>
 </div>
