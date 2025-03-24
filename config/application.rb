@@ -9,6 +9,15 @@ Bundler.require(*Rails.groups)
 module Myapp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.before_configuration do
+      env_file = File.join(Rails.root, 'config', 'local_env.yml')
+      if File.exist?(env_file)
+        YAML.load(File.open(env_file)).each do |key, value|
+          ENV[key.to_s] = value
+        end
+      end
+    end
+
     config.load_defaults 7.2
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
