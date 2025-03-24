@@ -8,8 +8,7 @@
         <nav class="space-x-6 text-lg">
           <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: 'hover:underline text-gray-700' %>
           <%= link_to 'マイページ', '#', class: 'hover:underline text-gray-700' %>
-          <%= link_to '全ての投稿', posts_path, class: 'hover:underline text-gray-700' %>
-          <%= link_to '自分の投稿', my_posts_path, class: 'hover:underline text-gray-700' %>
+          <%= link_to '断捨離リスト', items_path, class: 'hover:underline text-gray-700' %>
         </nav>
       <% else %>
         <%= link_to '新規登録', new_user_registration_path, class: 'hover:underline text-gray-700' %>
@@ -27,6 +26,16 @@
           断捨離の記録一覧
         <% end %>
       </h2>
+
+      <!-- 総売上金額の表示 -->
+      <% if @my_posts && @posts.present? %>
+        <div class="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+          <h3 class="text-xl font-semibold text-green-700">総売上金額</h3>
+          <p class="text-2xl font-bold text-green-600 mt-2">
+            <%= number_to_currency(@posts.sum(&:amount), unit: '¥', precision: 0) %>
+          </p>
+        </div>
+      <% end %>
 
       <div class="mb-6 flex justify-end">
         <div class="inline-flex rounded-md shadow-sm">
