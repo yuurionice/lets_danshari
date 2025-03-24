@@ -1,5 +1,8 @@
 source "https://rubygems.org"
 
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
+
 gem 'carrierwave'
 gem 'mini_magick'
 
