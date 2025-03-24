@@ -3,5 +3,5 @@ class Item < ApplicationRecord
   has_many :post, dependent: :destroy
 
   validates :name, presence: true
-  validates :danshari_at, presence: true
+
 end
