@@ -19,20 +19,30 @@ class User < ApplicationRecord
         user.update(provider: auth.provider, uid: auth.uid)
         return user
       else
-      Rails.logger.debug "Creating new user with email: #{auth.info.email}"
-      user = where(provider: auth.provider, uid: auth.uid).first_or_initialize
-      user.name = auth.info.name if user.respond_to?(:name)
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0, 20]
+        Rails.logger.debug "Creating new user with email: #{auth.info.email}"
+        user = where(provider: auth.provider, uid: auth.uid).first_or_initialize
+        user.name = auth.info.name if user.respond_to?(:name)
+        user.email = auth.info.email
+        user.password = Devise.friendly_token[0, 20]
 
-      if user.save
-        Rails.logger.debug "User saved successfully"
-        return user
-      else
-        Rails.logger.error "Failed to save user: #{user.errors.full_messages.join(', ')}"
-        return user
+        # user_nameを設定（必須フィールド）
+        base_username = auth.info.name.downcase.gsub(/\s+/, '_')
+        username = base_username
+        counter = 1
+        while User.exists?(user_name: username)
+          username = "#{base_username}_#{counter}"
+          counter += 1
+        end
+        user.user_name = username
+
+        if user.save
+          Rails.logger.debug "User saved successfully"
+          return user
+        else
+          Rails.logger.error "Failed to save user: #{user.errors.full_messages.join(', ')}"
+          return user
+        end
       end
-    end
     rescue => e
       Rails.logger.error "Exception in from_omniauth: #{e.message}"
       Rails.logger.error e.backtrace.join("\n")
