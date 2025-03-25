@@ -4,10 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]
+
+
   has_many :items, dependent: :destroy
   has_many :posts
 
   validates :uid, uniqueness: { scope: :provider }, if: -> { uid.present? && provider.present? }
+  validates :user_name, presence: true
 
   def self.from_omniauth(auth)
     begin
