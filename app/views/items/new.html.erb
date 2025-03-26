@@ -1,0 +1,63 @@
+<div class="min-h-screen w-full flex flex-col">
+  <header class="w-full flex justify-between items-center py-6 px-10 bg-gray-100">
+    <%= link_to root_path, class: "text-3xl italic text-gray-700 hover:text-gray-900 transition-colors duration-200 font-bold" do %>
+      Let's danshari
+    <% end %>
+    <nav class="space-x-6 text-lg">
+      <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: 'hover:underline text-gray-700' %>
+      <%= link_to 'マイページ', '#', class: 'hover:underline text-gray-700' %>
+      <%= link_to '一覧ページ', posts_path, class: 'hover:underline text-gray-700' %>
+    </nav>
+  </header>
+
+  <main class="flex-grow p-8">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl mb-6">ToDo</h2>
+
+      <%= form_with(model: @item, local: true, class: "mb-8") do |f| %>
+        <div class="flex items-center gap-4">
+          <div class="flex-grow">
+            <%= f.text_field :name, class: "w-full p-2 border rounded", placeholder: "断捨離するものを入力" %>
+          </div>
+          <div>
+            <%= f.date_field :danshari_at, class: "p-2 border rounded" %>
+          </div>
+          <%= f.submit '追加', class: "px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" %>
+        </div>
+      <% end %>
+
+      <div class="space-y-4">
+        <% @items.each do |item| %>
+          <div class="flex items-center p-4 bg-white rounded-lg shadow">
+            <div class="flex-grow">
+              <%= item.name %>
+            </div>
+            <div class="mx-4 text-gray-600">
+              <% if item.danshari_at.present? %>
+                <%= item.danshari_at.strftime('%Y/%m/%d') %>
+              <% else %>
+                未定
+              <% end %>
+            </div>
+
+            <%= link_to new_post_item_path(item), class: "mr-2 px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-sm" do %>断捨離した<% end %>
+            <%= link_to edit_item_path(item), class: "text-gray-400 hover:text-gray-600 mr-2" do %>
+              <i class="fas fa-edit"></i>
+            <% end %>
+            <%= button_to item_path(item), method: :delete, class: "text-gray-400 hover:text-gray-600", form: { data: { turbo_confirm: "本当に削除しますか？" } } do %>
+              <i class="fas fa-trash"></i>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </main>
+
+  <footer class="w-full py-6 px-10 bg-gray-100">
+    <nav class="flex justify-center space-x-8">
+      <%= link_to 'お問い合わせページ', '#', class: 'text-gray-500 hover:underline text-lg' %>
+      <%= link_to 'プライバシーポリシー', '#', class: 'text-gray-500 hover:underline text-lg' %>
+      <%= link_to '利用規約', '#', class: 'text-gray-500 hover:underline text-lg' %>
+    </nav>
+  </footer>
+</div>
