@@ -16,7 +16,9 @@ class ItemsController < ApplicationController
       if @item.save
         redirect_to items_path, notice: '断捨離アイテムを登録しました'
       else
-        render :new
+        @items = current_user.items.where(completed: false)
+        flash.now[:alert] = "断捨離するものを入力してください"
+        render :new, status: :unprocessable_entity
       end
     end
 
